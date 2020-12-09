@@ -48,17 +48,22 @@ curl -sSL https://git.io/get-mo -o mo
 echo "Mustache was installed successfully" | mo
 
 echo ""
+read -r 'which email do you want to use for ssl certificates? > ' cerbotMail
 read -p 'which domains should be configured? (seperated by spaces) > ' domains
 
 echo "recieved following domains:"
 domainsArr=($domains)
+cerbotCmd="sudo certbot certonly --manual --preferred-challenges=dns --email ${certbotMail} --agree-tos"
 for x in "${domainsArr[@]}"
 do
     echo "$x"
+    cerbotCmd+=" -d $i"
 done
 
 echo "configuring certbot"
-echo "setting with main domain ${domainsArr[0]}"
+echo "$cerbotCmd"
+echo "setting up with main domain ${domainsArr[0]}"
+
 
 echo "reloading haproxy"
 sudo service haproxy restart
