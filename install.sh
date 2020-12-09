@@ -18,6 +18,11 @@ apt-get -y install wget vim haproxy
 
 echo "installing nvm"
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+
+echo "reloading bash"
+source ~/.bashrc
+
+echo "setting up nvm"
 nvm install 13
 nvm use 13
 
