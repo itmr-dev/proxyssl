@@ -62,7 +62,7 @@ do
     cerbotCmd+=" -d $x"
 done
 
-echo "export CERTS_DIR=/etc/letsencrypt/live/${mainDomain}/" >> ~/.bashrc
+echo "export CERTS_DIR=\"/etc/letsencrypt/live/${mainDomain}/\"" >> ~/.bashrc
 
 
 echo "configuring certbot"
@@ -98,3 +98,4 @@ echo "           |_|                  |___/                         |_|    ";
 echo ""
 echo "Install and setup was succesfull"
 echo "Use env var \$CERTS_DIR in your backends to use outgoing ssl and firewall rules or use the proxy to expose your backends"
+echo ""
