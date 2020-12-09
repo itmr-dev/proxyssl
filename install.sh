@@ -3,7 +3,7 @@
 echo "Beginning proxyssl setup"
 
 echo "installing cron"
-sudo apt install crontab -y
+sudo apt install cron -y
 
 echo "installing snap & certbot"
 sudo apt update
