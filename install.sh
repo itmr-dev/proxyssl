@@ -57,7 +57,7 @@ cerbotCmd="sudo certbot certonly --manual --preferred-challenges=dns --email ${c
 for x in "${domainsArr[@]}"
 do
     echo "$x"
-    cerbotCmd+=" -d $i"
+    cerbotCmd+=" -d $x"
 done
 
 echo "configuring certbot"
