@@ -34,6 +34,9 @@ sudo rm /etc/letsencrypt/cli.ini
 sudo rm /etc/cron.d/cerbot
 sudo rm /etc/haproxy/haproxy.cfg
 
+echo "creating letsencrypt folder"
+sudo mkdir /etc/letsencrypt
+
 echo "copying new configs & scripts"
 sudo cp ./configs/certbot /etc/cron.d/
 sudo cp ./configs/cli.ini /etc/letsencrypt/
