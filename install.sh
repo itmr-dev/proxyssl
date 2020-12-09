@@ -61,9 +61,8 @@ do
 done
 
 echo "configuring certbot"
-echo "$cerbotCmd"
 echo "setting up with main domain ${domainsArr[0]}"
-
+$cerbotCmd
 
 echo "reloading haproxy"
 sudo service haproxy restart
