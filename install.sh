@@ -47,7 +47,6 @@ curl -sSL https://git.io/get-mo -o mo
 . "mo"
 echo "Mustache was installed successfully" | mo
 
-clear
 echo ""
 read -p 'which email do you want to use for ssl certificates? > ' certbotMail
 read -p 'which domains should be configured? (seperated by spaces) > ' domains
@@ -64,6 +63,7 @@ done
 
 echo "export CERTS_DIR=\"/etc/letsencrypt/live/${mainDomain}/\"" >> ~/.bashrc
 
+//TODO: add mustache render of past-renew-hook
 
 echo "configuring certbot"
 echo "setting up with main domain ${mainDomain}"
@@ -72,10 +72,11 @@ $cerbotCmd
 echo "reloading haproxy"
 sudo service haproxy restart
 
-clear
 
 
-
+echo ""
+echo ""
+echo ""
 
 echo "                                                                                             ";
 echo "88                                                              88                           ";
