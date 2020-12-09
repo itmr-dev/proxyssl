@@ -42,6 +42,11 @@ sudo cp ./configs/certbot /etc/cron.d/
 sudo cp ./configs/cli.ini /etc/letsencrypt/
 sudo cp ./configs/haproxy.cfg /etc/haproxy/
 
+echo "installing mustache"
+curl -sSL https://git.io/get-mo -o mo
+. "mo"
+echo "Mustache was installed successfully" | mo
+
 echo ""
 read -p 'which domains should be configured? (seperated by spaces) > ' domains
 
