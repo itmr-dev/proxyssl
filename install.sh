@@ -54,6 +54,7 @@ read -p 'which domains should be configured? (seperated by spaces) > ' domains
 
 echo "recieved following domains:"
 domainsArr=($domains)
+mainDomain=${domainsArr[0]}
 cerbotCmd="sudo certbot certonly --manual --preferred-challenges=dns --email ${certbotMail} --agree-tos"
 for x in "${domainsArr[@]}"
 do
@@ -61,9 +62,41 @@ do
     cerbotCmd+=" -d $x"
 done
 
+echo "export CERTS_DIR=/etc/letsencrypt/live/${mainDomain}/" >> ~/.bashrc
+
+
 echo "configuring certbot"
-echo "setting up with main domain ${domainsArr[0]}"
+echo "setting up with main domain ${mainDomain}"
 $cerbotCmd
 
 echo "reloading haproxy"
 sudo service haproxy restart
+
+clear
+
+
+
+
+echo "                                                                                             ";
+echo "88                                                              88                           ";
+echo "\"\"    ,d                                                        88                           ";
+echo "      88                                                        88                           ";
+echo "88  MM88MMM  88,dPYba,,adPYba,   8b,dPPYba,             ,adPPYb,88   ,adPPYba,  8b       d8  ";
+echo "88    88     88P'   \"88\"    \"8a  88P'   \"Y8  aaaaaaaa  a8\"    \`Y88  a8P_____88  \`8b     d8'  ";
+echo "88    88     88      88      88  88          \"\"\"\"\"\"\"\"  8b       88  8PP\"\"\"\"\"\"\"   \`8b   d8'   ";
+echo "88    88,    88      88      88  88                    \"8a,   ,d88  \"8b,   ,aa    \`8b,d8'    ";
+echo "88    \"Y888  88      88      88  88                     \`\"8bbdP\"Y8   \`\"Ybbd8\"'      \"8\"      ";
+echo "                                                                                             ";
+echo "                                                                                             ";
+
+
+echo "          _                                          _               ";
+echo "  ___ ___| |_ __  _ __ _____  ___   _       ___  ___| |_ _   _ _ __  ";
+echo " / __/ __| | '_ \| '__/ _ \ \/ / | | |_____/ __|/ _ \ __| | | | '_ \ ";
+echo " \__ \__ \ | |_) | | | (_) >  <| |_| |_____\__ \  __/ |_| |_| | |_) |";
+echo " |___/___/_| .__/|_|  \___/_/\_\\__, |     |___/\___|\__|\__,_| .__/ ";
+echo "           |_|                  |___/                         |_|    ";
+
+echo ""
+echo "Install and setup was succesfull"
+echo "use env var \$CERTS_DIR in your backends to use outgoing ssl and firewall rules or use the proxy to expose your backends"
