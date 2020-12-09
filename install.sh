@@ -48,7 +48,7 @@ curl -sSL https://git.io/get-mo -o mo
 echo "Mustache was installed successfully" | mo
 
 echo ""
-read -p 'which email do you want to use for ssl certificates? > ' cerbotMail
+read -p 'which email do you want to use for ssl certificates? > ' certbotMail
 read -p 'which domains should be configured? (seperated by spaces) > ' domains
 
 echo "recieved following domains:"
