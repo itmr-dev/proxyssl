@@ -35,7 +35,7 @@ sudo rm /etc/cron.d/cerbot
 sudo rm /etc/haproxy/haproxy.cfg
 
 echo "copying new configs & scripts"
-sudo cp ./configs/certbot /etc/cront.d/
+sudo cp ./configs/certbot /etc/cron.d/
 sudo cp ./configs/cli.ini /etc/letsencrypt/
 sudo cp ./configs/haproxy.cfg /etc/haproxy/
 
