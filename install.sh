@@ -42,5 +42,17 @@ sudo cp ./configs/certbot /etc/cron.d/
 sudo cp ./configs/cli.ini /etc/letsencrypt/
 sudo cp ./configs/haproxy.cfg /etc/haproxy/
 
+echo ""
+read -p 'which domains should be configured? (seperated by spaces) > ' domains
+
+echo "recieved following domains:"
+domainsArr=$(echo $domains | tr " " "\n")
+for x in $domainsArr
+do
+    echo "$x"
+done
+
+echo "configuring certbot"
+
 echo "reloading haproxy"
 sudo service haproxy restart
