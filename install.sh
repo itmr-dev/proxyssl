@@ -51,10 +51,10 @@ echo ""
 read -p 'which domains should be configured? (seperated by spaces) > ' domains
 
 echo "recieved following domains:"
-domainsArr=$(echo $domains | tr " " "\n")
+domainsArr=($domains)
 for x in $domainsArr
 do
-    echo "$x"
+    echo "$x\n"
 done
 
 echo "configuring certbot"
