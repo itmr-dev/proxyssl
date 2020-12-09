@@ -63,7 +63,7 @@ done
 
 echo "export CERTS_DIR=\"/etc/letsencrypt/live/${mainDomain}/\"" >> ~/.bashrc
 
-//TODO: add mustache render of past-renew-hook
+#TODO: add mustache render of past-renew-hook
 
 echo "configuring certbot"
 echo "setting up with main domain ${mainDomain}"
@@ -97,6 +97,6 @@ echo " |___/___/_| .__/|_|  \___/_/\_\\__, |     |___/\___|\__|\__,_| .__/      
 echo "           |_|                  |___/                         |_|    ";
 
 echo ""
-echo "Install and setup was succesfull"
-echo "Use env var \$CERTS_DIR in your backends to use outgoing ssl and firewall rules or use the proxy to expose your backends"
+echo "Install and setup is done. Check for any errors above."
+echo "Use env var \$CERTS_DIR in your backends to use outgoing ssl and firewall rules or use the proxy to expose your backends."
 echo ""
