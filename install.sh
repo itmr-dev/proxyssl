@@ -38,6 +38,7 @@ sudo rm /etc/haproxy/haproxy.cfg
 
 echo "creating letsencrypt folder"
 sudo mkdir -p /etc/letsencrypt
+sudo mkdir -p /etc/ssl/haproxycert
 
 echo "creating secrets folder"
 sudo mkdir -p /opt/.secrets/certbot/
