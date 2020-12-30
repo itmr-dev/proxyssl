@@ -71,6 +71,8 @@ echo "restricting cloudflare token file access"
 chmod 777 ~/.secrets/certbot/cloudflare.ini
 
 pwd
+cat ~/.secrets/certbot/cloudflare.ini
+echo ~
 
 echo "recieved following domains:"
 domainsArr=($domains)
