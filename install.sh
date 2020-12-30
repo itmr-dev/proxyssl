@@ -68,7 +68,7 @@ echo "saving token to ~/.secrets/certbot/cloudflare.ini"
 echo "dns_cloudflare_api_token = ${cloudflareToken}" > ~/.secrets/certbot/cloudflare.ini
 
 echo "restricting cloudflare token file access"
-chmod 600 ~/.secrets/certbot/cloudflare.ini
+chmod 777 ~/.secrets/certbot/cloudflare.ini
 
 echo "recieved following domains:"
 domainsArr=($domains)
