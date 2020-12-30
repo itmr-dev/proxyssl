@@ -37,7 +37,13 @@ sudo rm /etc/cron.d/cerbot
 sudo rm /etc/haproxy/haproxy.cfg
 
 echo "creating letsencrypt folder"
-sudo mkdir /etc/letsencrypt
+sudo mkdir -p /etc/letsencrypt
+
+echo "creating secrets folder"
+sudo mkdir -p ~/.secrets/certbot/
+
+echo "creating cloudflare token file"
+sudo touch ~/.secrets/certbot/cloudflare.ini
 
 echo "copying new configs & scripts"
 sudo cp ./configs/certbot /etc/cron.d/
