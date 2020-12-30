@@ -12,6 +12,8 @@ sudo snap install core; sudo snap refresh core
 sudo apt-get remove certbot -y
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo snap set certbot trust-plugin-with-root=ok
+sudo snap install certbot-dns-cloudflare
 
 echo "installing haproxy"
 apt-get -y install wget vim haproxy
@@ -51,10 +53,21 @@ echo ""
 read -p 'which email do you want to use for ssl certificates? > ' certbotMail
 read -p 'which domains should be configured? (seperated by spaces) > ' domains
 
+echo ""
+echo "Setting up Cloudflare Certbot API"
+echo "Please create a restricted token with the \"Zone:DNS:Edit\" permissions"
+read -p 'please provide your cloudflare token > ' cloudflareToken
+
+echo "saving token to ~/.secrets/certbot/cloudflare.ini"
+echo "dns_cloudflare_api_token = ${cloudflareToken}" > ~/.secrets/certbot/cloudflare.ini
+
+echo "restricting cloudflare token file access"
+chmod 600 ~/.secrets/certbot/cloudflare.ini
+
 echo "recieved following domains:"
 domainsArr=($domains)
 mainDomain=${domainsArr[0]}
-cerbotCmd="sudo certbot certonly --manual --preferred-challenges=dns --email ${certbotMail} --agree-tos"
+cerbotCmd="sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials ~/.secrets/certbot/cloudflare.ini --email ${certbotMail} --agree-tos"
 for x in "${domainsArr[@]}"
 do
     echo "$x"
@@ -99,4 +112,5 @@ echo "           |_|                  |___/                         |_|    ";
 echo ""
 echo "Install and setup is done. Check for any errors above."
 echo "Use env var \$CERTS_DIR in your backends to use outgoing ssl and firewall rules or use the proxy to expose your backends."
+echo "Use \"sudo certbot renew --dry-run\" verify the certbot configuration."
 echo ""
