@@ -40,10 +40,10 @@ echo "creating letsencrypt folder"
 sudo mkdir -p /etc/letsencrypt
 
 echo "creating secrets folder"
-sudo mkdir -p ~/.secrets/certbot/
+sudo mkdir -p /opt/.secrets/certbot/
 
 echo "creating cloudflare token file"
-sudo touch ~/.secrets/certbot/cloudflare.ini
+sudo touch /opt/.secrets/certbot/cloudflare.ini
 
 echo "copying new configs & scripts"
 sudo cp ./configs/certbot /etc/cron.d/
@@ -65,19 +65,15 @@ echo "Please create a restricted token with the \"Zone:DNS:Edit\" permissions"
 read -p 'please provide your cloudflare token > ' cloudflareToken
 
 echo "saving token to ~/.secrets/certbot/cloudflare.ini"
-echo "dns_cloudflare_api_token = ${cloudflareToken}" > ~/.secrets/certbot/cloudflare.ini
+echo "dns_cloudflare_api_token = ${cloudflareToken}" > /opt/.secrets/certbot/cloudflare.ini
 
 echo "restricting cloudflare token file access"
-chmod 777 ~/.secrets/certbot/cloudflare.ini
-
-pwd
-cat ~/.secrets/certbot/cloudflare.ini
-echo ~
+chmod 600 /opt/.secrets/certbot/cloudflare.ini
 
 echo "recieved following domains:"
 domainsArr=($domains)
 mainDomain=${domainsArr[0]}
-cerbotCmd="sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials ~/.secrets/certbot/cloudflare.ini --email ${certbotMail} --agree-tos"
+cerbotCmd="sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials /opt/.secrets/certbot/cloudflare.ini --email ${certbotMail} --agree-tos"
 for x in "${domainsArr[@]}"
 do
     echo "$x"
