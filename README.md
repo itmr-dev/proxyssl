@@ -7,4 +7,4 @@
 4. execute script
 
 ## one-line installation
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/itmr-dev/itmr-proxyssl/master/oneline-install.sh)"`
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/itmr-dev/proxyssl/master/oneline-install.sh)"`
