@@ -53,7 +53,7 @@ sudo cp ./configs/haproxy.cfg /etc/haproxy/
 
 echo "installing mustache"
 curl -sSL https://git.io/get-mo -o mo
-. "mo"
+. "./mo"
 echo "Mustache was installed successfully" | mo
 
 echo ""
@@ -83,7 +83,11 @@ done
 
 echo "export CERTS_DIR=\"/etc/letsencrypt/live/${mainDomain}/\"" >> ~/.bashrc
 
-#TODO: add mustache render of past-renew-hook
+echo "creating cerbot deploy script with domains"
+cat ./scripts/past-renew-hook.sh | mo > /opt/past-renew-hook.sh
+
+echo "copying certbot scripts"
+sudo cp ./scripts/pre-renew-hook.sh /opt/
 
 echo "configuring certbot"
 echo "setting up with main domain ${mainDomain}"
