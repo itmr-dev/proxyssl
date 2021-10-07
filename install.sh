@@ -18,7 +18,13 @@ echo " \__ \__ \ | |_) | | | (_) >  <| |_| |_____\__ \  __/ |_| |_| | |_) |";
 echo " |___/___/_| .__/|_|  \___/_/\_\\__, |     |___/\___|\__|\__,_| .__/       v2.2";
 echo "           |_|                  |___/                         |_|    ";
 
+echo "";
+echo "";
+
 read -p "Press [Enter] key to start setup..."
+
+echo "";
+echo "";
 
 echo "Beginning proxyssl setup"
 
