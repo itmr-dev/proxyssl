@@ -9,7 +9,6 @@ if ! command -v git &> /dev/null
 then
     echo "git not found installing now"
     apt install git -y
-    exit
 fi
 echo "cloning repository to tmp"
 sudo git clone https://github.com/itmr-dev/proxyssl.git /tmp/proxyssl/
