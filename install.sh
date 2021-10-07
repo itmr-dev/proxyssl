@@ -15,7 +15,7 @@ echo ""
 echo "  ___ ___| |_ __  _ __ _____  ___   _       ___  ___| |_ _   _ _ __  ";
 echo " / __/ __| | '_ \| '__/ _ \ \/ / | | |_____/ __|/ _ \ __| | | | '_ \ ";
 echo " \__ \__ \ | |_) | | | (_) >  <| |_| |_____\__ \  __/ |_| |_| | |_) |";
-echo " |___/___/_| .__/|_|  \___/_/\_\\__, |     |___/\___|\__|\__,_| .__/       v2.2";
+echo " |___/___/_| .__/|_|  \___/_/\_\\__, |     |___/\___|\__|\__,_| .__/       v2.2.1";
 echo "           |_|                  |___/                         |_|    ";
 
 echo "";
@@ -51,11 +51,17 @@ echo "reloading bash"
 source ~/.bashrc
 
 echo "setting up nvm"
-nvm install 13
-nvm use 13
+nvm install --lts
+# nvm use 13
 
 echo "installing pm2"
 npm i -g pm2
+
+echo "reloading bash"
+source ~/.bashrc
+
+echo "getting pm2 path"
+pm2path=$(command -v pm2)
 
 echo "removing standard configs & scripts"
 sudo rm /etc/letsencrypt/cli.ini
@@ -150,4 +156,8 @@ echo ""
 echo "Install and setup is done. Check for any errors above."
 echo "Use env var \$CERTS_DIR in your backends to use outgoing ssl and firewall rules or use the proxy to expose your backends."
 echo "Use \"sudo certbot renew --dry-run\" verify the certbot configuration."
+echo ""
+echo "To make sure all your backends are getting started on boot please follow those steps:"
+pm2 startup
+echo ""
 echo ""
