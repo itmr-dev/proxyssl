@@ -111,7 +111,7 @@ sudo echo "dns_cloudflare_api_token = ${cloudflareToken}" > /opt/.secrets/certbo
 echo "recieved following domains:"
 domainsArr=($domains)
 mainDomain=${domainsArr[0]}
-cerbotCmd="sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials /opt/.secrets/certbot/cloudflare.ini --email ${certbotMail} --agree-tos"
+cerbotCmd="sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials /opt/.secrets/certbot/cloudflare.ini --dns-cloudflare-propagation-seconds 30 --email ${certbotMail} --agree-tos"
 for x in "${domainsArr[@]}"
 do
     echo "$x"
@@ -121,7 +121,7 @@ done
 echo "export CERTS_DIR=\"/etc/letsencrypt/live/${mainDomain}/\"" >> ~/.bashrc
 
 echo "creating cerbot deploy script with domains"
-sudo cat ./scripts/past-renew-hook.sh | su mo > /opt/past-renew-hook.sh
+sudo cat ./scripts/past-renew-hook.sh | sudo mo > /opt/past-renew-hook.sh
 
 echo "copying certbot scripts"
 sudo cp ./scripts/pre-renew-hook.sh /opt/
