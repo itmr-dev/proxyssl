@@ -120,11 +120,20 @@ done
 
 echo "export CERTS_DIR=\"/etc/letsencrypt/live/${mainDomain}/\"" >> ~/.bashrc
 
+echo "creating past renew hook"
+sudo touch /opt/past-renew-hook.sh
+
+echo "change past renew hook owner"
+sudo chown $USER /opt/past-renew-hook.sh
+
 echo "creating cerbot deploy script with domains"
-sudo cat ./scripts/past-renew-hook.sh | sudo mo > /opt/past-renew-hook.sh
+sudo cat ./scripts/past-renew-hook.sh | mo > /opt/past-renew-hook.sh
 
 echo "copying certbot scripts"
 sudo cp ./scripts/pre-renew-hook.sh /opt/
+
+echo "change pre renew hook owner"
+sudo chown $USER /opt/pre-renew-hook.sh
 
 echo "configuring certbot"
 echo "setting up with main domain ${mainDomain}"
