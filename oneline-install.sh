@@ -8,7 +8,7 @@ echo "checking if git is installed"
 if ! command -v git &> /dev/null
 then
     echo "git not found installing now"
-    apt install git -y
+    sudo apt install git -y
 else
     echo "git requirement satisfied"
 fi
