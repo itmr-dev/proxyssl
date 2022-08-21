@@ -100,10 +100,10 @@ echo "Please create a restricted token with the \"Zone:DNS:Edit\" permissions"
 read -p 'please provide your cloudflare token > ' cloudflareToken
 
 echo "saving token to ~/.secrets/certbot/cloudflare.ini"
-echo "dns_cloudflare_api_token = ${cloudflareToken}" > /opt/.secrets/certbot/cloudflare.ini
+sudo echo "dns_cloudflare_api_token = ${cloudflareToken}" > /opt/.secrets/certbot/cloudflare.ini
 
 echo "restricting cloudflare token file access"
-chmod 600 /opt/.secrets/certbot/cloudflare.ini
+sudo chmod 600 /opt/.secrets/certbot/cloudflare.ini
 
 echo "recieved following domains:"
 domainsArr=($domains)
@@ -118,7 +118,7 @@ done
 echo "export CERTS_DIR=\"/etc/letsencrypt/live/${mainDomain}/\"" >> ~/.bashrc
 
 echo "creating cerbot deploy script with domains"
-cat ./scripts/past-renew-hook.sh | mo > /opt/past-renew-hook.sh
+sudo cat ./scripts/past-renew-hook.sh | mo > /opt/past-renew-hook.sh
 
 echo "copying certbot scripts"
 sudo cp ./scripts/pre-renew-hook.sh /opt/
