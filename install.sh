@@ -42,7 +42,7 @@ sudo snap set certbot trust-plugin-with-root=ok
 sudo snap install certbot-dns-cloudflare
 
 echo "installing haproxy"
-apt-get -y install wget vim haproxy
+sudo apt -y install wget vim haproxy
 
 echo "installing nvm"
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
