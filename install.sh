@@ -80,6 +80,12 @@ sudo mkdir -p /opt/.secrets/certbot/
 echo "creating cloudflare token file"
 sudo touch /opt/.secrets/certbot/cloudflare.ini
 
+echo "change secrets folder owner"
+sudo chown -R $USER /opt/.secrets/
+
+echo "restricting cloudflare token file access"
+sudo chmod 600 /opt/.secrets/certbot/cloudflare.ini
+
 echo "copying new configs & scripts"
 sudo cp ./configs/certbot /etc/cron.d/
 sudo cp ./configs/cli.ini /etc/letsencrypt/
@@ -102,9 +108,6 @@ read -p 'please provide your cloudflare token > ' cloudflareToken
 echo "saving token to ~/.secrets/certbot/cloudflare.ini"
 sudo echo "dns_cloudflare_api_token = ${cloudflareToken}" > /opt/.secrets/certbot/cloudflare.ini
 
-echo "restricting cloudflare token file access"
-sudo chmod 600 /opt/.secrets/certbot/cloudflare.ini
-
 echo "recieved following domains:"
 domainsArr=($domains)
 mainDomain=${domainsArr[0]}
@@ -118,7 +121,7 @@ done
 echo "export CERTS_DIR=\"/etc/letsencrypt/live/${mainDomain}/\"" >> ~/.bashrc
 
 echo "creating cerbot deploy script with domains"
-sudo cat ./scripts/past-renew-hook.sh | mo > /opt/past-renew-hook.sh
+sudo cat ./scripts/past-renew-hook.sh | su mo > /opt/past-renew-hook.sh
 
 echo "copying certbot scripts"
 sudo cp ./scripts/pre-renew-hook.sh /opt/
