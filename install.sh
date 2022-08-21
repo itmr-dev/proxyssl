@@ -41,8 +41,8 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot
 sudo snap set certbot trust-plugin-with-root=ok
 sudo snap install certbot-dns-cloudflare
 
-echo "installing haproxy"
-sudo apt -y install wget vim haproxy
+echo "installing wget, vim, haproxy, rsync"
+sudo apt -y install wget vim haproxy rsync
 
 echo "installing nvm"
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
@@ -58,6 +58,9 @@ nvm install --lts
 
 echo "installing pm2"
 npm i -g pm2
+
+echo "installing yarn"
+npm i -g yarn
 
 echo "reloading bash"
 source ~/.bashrc
