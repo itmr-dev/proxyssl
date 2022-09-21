@@ -15,7 +15,7 @@ echo ""
 echo "  ___ ___| |_ __  _ __ _____  ___   _       ___  ___| |_ _   _ _ __  ";
 echo " / __/ __| | '_ \| '__/ _ \ \/ / | | |_____/ __|/ _ \ __| | | | '_ \ ";
 echo " \__ \__ \ | |_) | | | (_) >  <| |_| |_____\__ \  __/ |_| |_| | |_) |";
-echo " |___/___/_| .__/|_|  \___/_/\_\\__, |     |___/\___|\__|\__,_| .__/       v2.3.2";
+echo " |___/___/_| .__/|_|  \___/_/\_\\__, |     |___/\___|\__|\__,_| .__/       v2.3.3";
 echo "           |_|                  |___/                         |_|    ";
 
 echo "";
@@ -143,6 +143,12 @@ sudo service haproxy restart
 echo "To make sure all your backends are getting started on boot please follow those steps:"
 pm2 startup
 
+echo "Generating ssh-key for GitHub actions"
+mkdir -p ~/.ssh/
+ssh-keygen -m PEM -t rsa -b 4096 -f ~/.ssh/github-actions
+touch ~/.ssh/authorized_keys
+cat github-actions.pub >> ~/.ssh/authorized_keys
+
 echo ""
 echo ""
 echo ""
@@ -171,4 +177,8 @@ echo "Use env var \$CERTS_DIR in your backends to use outgoing ssl and firewall 
 echo "Use \"sudo certbot renew --dry-run\" verify the certbot configuration."
 echo ""
 echo "Please also be aware that changing your default node version will also require you to change the deploy hooks for pm2 restart to work."
+echo ""
+echo ""
+echo "Use the following command to view the ssh private key for rsync GitHub action deployments:"
+echo "cat ~/.ssh/github-actions"
 echo ""
