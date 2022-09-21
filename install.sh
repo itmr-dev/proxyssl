@@ -33,7 +33,7 @@ sudo apt install cron -y
 
 echo "installing certbot, pip3 & cloudflare-plugin"
 sudo apt update
-apt install certbot python3-pip
+apt install certbot python3-pip -y
 pip3 install certbot-dns-cloudflare
 
 echo "installing wget, vim, haproxy, rsync"
