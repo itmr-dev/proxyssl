@@ -13,9 +13,9 @@ else
     echo "git requirement satisfied"
 fi
 echo "cloning repository to tmp"
-sudo git clone https://github.com/itmr-dev/proxyssl.git /tmp/proxyssl/
+git clone https://github.com/itmr-dev/proxyssl.git /tmp/proxyssl/
 echo "changing to installer directory"
 cd /tmp/proxyssl
 echo "starting install"
 clear
-sudo bash ./install.sh
+bash ./install.sh
