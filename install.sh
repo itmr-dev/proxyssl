@@ -15,7 +15,7 @@ echo ""
 echo "  ___ ___| |_ __  _ __ _____  ___   _       ___  ___| |_ _   _ _ __  ";
 echo " / __/ __| | '_ \| '__/ _ \ \/ / | | |_____/ __|/ _ \ __| | | | '_ \ ";
 echo " \__ \__ \ | |_) | | | (_) >  <| |_| |_____\__ \  __/ |_| |_| | |_) |";
-echo " |___/___/_| .__/|_|  \___/_/\_\\__, |     |___/\___|\__|\__,_| .__/       v2.2.2";
+echo " |___/___/_| .__/|_|  \___/_/\_\\__, |     |___/\___|\__|\__,_| .__/       v2.3.0";
 echo "           |_|                  |___/                         |_|    ";
 
 echo "";
@@ -31,21 +31,16 @@ echo "Beginning proxyssl setup"
 echo "installing cron"
 sudo apt install cron -y
 
-echo "installing snap & certbot"
+echo "installing certbot, pip3 & cloudflare-plugin"
 sudo apt update
-sudo apt install snapd -y
-sudo snap install core; sudo snap refresh core
-sudo apt-get remove certbot -y
-sudo snap install --classic certbot
-sudo ln -s /snap/bin/certbot /usr/bin/certbot
-sudo snap set certbot trust-plugin-with-root=ok
-sudo snap install certbot-dns-cloudflare
+apt install certbot python3-pip
+pip3 install certbot-dns-cloudflare
 
 echo "installing wget, vim, haproxy, rsync"
 sudo apt -y install wget vim haproxy rsync
 
 echo "installing nvm"
-wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
 echo "reloading bash"
 source ~/.bashrc
