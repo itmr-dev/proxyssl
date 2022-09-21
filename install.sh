@@ -15,7 +15,7 @@ echo ""
 echo "  ___ ___| |_ __  _ __ _____  ___   _       ___  ___| |_ _   _ _ __  ";
 echo " / __/ __| | '_ \| '__/ _ \ \/ / | | |_____/ __|/ _ \ __| | | | '_ \ ";
 echo " \__ \__ \ | |_) | | | (_) >  <| |_| |_____\__ \  __/ |_| |_| | |_) |";
-echo " |___/___/_| .__/|_|  \___/_/\_\\__, |     |___/\___|\__|\__,_| .__/       v2.3.1";
+echo " |___/___/_| .__/|_|  \___/_/\_\\__, |     |___/\___|\__|\__,_| .__/       v2.3.2";
 echo "           |_|                  |___/                         |_|    ";
 
 echo "";
@@ -33,8 +33,8 @@ sudo apt install cron -y
 
 echo "installing certbot, pip3 & cloudflare-plugin"
 sudo apt update
-apt install certbot python3-pip -y
-pip3 install certbot-dns-cloudflare
+sudo apt install certbot python3-pip -y
+sudo pip3 install certbot-dns-cloudflare
 
 echo "installing wget, vim, haproxy, rsync"
 sudo apt -y install wget vim haproxy rsync
