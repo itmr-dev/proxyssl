@@ -28,6 +28,9 @@ echo "";
 
 echo "Beginning proxyssl setup"
 
+echo "updating system"
+sudo apt update && sudo apt upgrade -y
+
 echo "installing cron"
 sudo apt install cron -y
 
