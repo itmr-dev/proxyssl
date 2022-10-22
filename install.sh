@@ -150,7 +150,7 @@ echo "Generating ssh-key for GitHub actions"
 mkdir -p ~/.ssh/
 ssh-keygen -m PEM -t rsa -b 4096 -f ~/.ssh/github-actions
 touch ~/.ssh/authorized_keys
-cat github-actions.pub >> ~/.ssh/authorized_keys
+cat ~/.ssh/github-actions.pub >> ~/.ssh/authorized_keys
 
 echo ""
 echo ""
